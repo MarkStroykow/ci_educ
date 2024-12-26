@@ -1,0 +1,39 @@
+name: Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+    - name: Build
+      run: go build -v ./...
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+    - name: Test
+      run: go test -v ./...
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@v4
+    - name: Start deployment
+      run: echo "Разворачиваем приложение на хосте"
