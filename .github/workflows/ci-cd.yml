@@ -1,4 +1,4 @@
-name: Testing
+name: Testing and Deployment
 
 on:
   push:
@@ -36,4 +36,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Start deployment
-      run: echo "Разворачиваем приложение на хосте"
+      run: echo "Разворачиваем приложение на хосте1"
